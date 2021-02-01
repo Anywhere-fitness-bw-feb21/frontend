@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 const initialValues = {
@@ -43,6 +44,7 @@ export default function Login() {
       </label>
 
       <button>Login</button>
+      <Link to = "/register">If you don't have account, please Sign in</Link>
     </div>
   );
 }
