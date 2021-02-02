@@ -30,7 +30,7 @@ export default function Login() {
       axios
       .post("https://anytime-fitness.herokuapp.com/api/auth/login",infoValues)
       .then(res=> {
-          console.log(res)
+          window.localStorage.setItem('token',res.data.token)
       })
       .catch(err => {
           console.log(err.response)
