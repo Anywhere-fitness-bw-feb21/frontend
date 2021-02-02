@@ -6,12 +6,13 @@ const ClientSearch = () => {
     const [inputValue, setInputValue] = useState("")
     
     const handleChange = (e) => {
-
+        setInputValue(e.target.value)
     }
 
-    const handleSearch = (endpoint) => {
+    const handleSearch = (e) => {
+    e.preventDefault();
     axiosWithAuth()
-    .get(`/api/auth/users/classes/${endpoint}`)
+    .get(`/api/auth/users/classes/${e.target.name}`)
     .then(res => {
         console.log(res)
     })
@@ -29,12 +30,12 @@ const ClientSearch = () => {
             onChange = {handleChange}
            />
 
-           <button onClick = {handleSearch()}>Search by class time</button>
-           <button onClick = {handleSearch()}>Search by date</button>
-           <button onClick = {handleSearch("duration")}>Search by duration</button>
-           <button onClick = {handleSearch("type")}>Search by class type</button>
-           <button onClick = {handleSearch("intensity")}>Search by intensity level</button>
-           <button onClick = {handleSearch("location")}>Search by class location</button>
+           <button name="time" onClick = {handleSearch}>Search by class time</button>
+           <button name="date" onClick = {handleSearch}>Search by date</button>
+           <button name="duration" onClick = {handleSearch}>Search by duration</button>
+           <button name="type" onClick = {handleSearch}>Search by class type</button>
+           <button name="intensity" onClick = {handleSearch}>Search by intensity level</button>
+           <button name="location" onClick = {handleSearch}>Search by class location</button>
         </form>
     )
 }

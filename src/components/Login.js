@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 
 const initialValues = {
@@ -15,6 +15,7 @@ const initialValues = {
 export default function Login() {
   //const [loginInfo, setloginIn] = useState(initialMember);
   const [infoValues, setInfoValues] = useState(initialValues);
+  const history = useHistory();
 
   // changeHandler
   const inputChange = (evt) => {
@@ -31,6 +32,12 @@ export default function Login() {
       .post("https://anytime-fitness.herokuapp.com/api/auth/login",infoValues)
       .then(res=> {
           window.localStorage.setItem('token',res.data.token)
+          if(res.data.role === "client"){
+            history.push("/client");
+          }
+          else if(res.data.role === "instructor"){
+            history.push("/instructor");
+          }
       })
       .catch(err => {
           console.log(err.response)
