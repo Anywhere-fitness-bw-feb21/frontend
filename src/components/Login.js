@@ -1,7 +1,9 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import styled from 'styled-components';
 import { Link, useHistory } from "react-router-dom";
+
 
 
 const initialValues = {
@@ -45,6 +47,8 @@ export default function Login() {
   }
 
   return (
+    <StyledForm>
+    <h1>Login</h1>
     <form onSubmit={submitLogin}>
       <label>
         Username
@@ -66,9 +70,59 @@ export default function Login() {
         />
       </label>
 
-      <button>Login</button>
+      <button className='loginBtn'>Login</button>
       <br/>
-      <Link to = "/register">If you don't have account, please Sign in</Link>
+      <p>If you don't have account</p>
+      <Link className='signUp' to = "/register">Please Sign Up</Link>
     </form>
+    </StyledForm>
   );
 }
+
+
+const StyledForm = styled.form`
+
+background-color: #BAC7BE;
+height: 30vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin: 5rem 10rem;
+
+
+h1{
+  margin-bottom: 2rem;
+}
+label{
+margin-left: 1rem;
+
+
+}
+
+input{
+  background-color: #C2E1C2;
+  margin-left: 1rem;
+  border: none;
+}
+p{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin: 1rem;
+  text-decoration: none;
+}
+.signUp{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0;
+  text-decoration: none;
+  text-decoration: underline;
+  color: #778472;
+}
+.loginBtn{
+  margin-left: 1rem;
+}
+`
