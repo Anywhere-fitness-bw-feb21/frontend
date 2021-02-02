@@ -75,7 +75,7 @@ export default function Register() {
           //window.localStorage.setItem("token",)
           console.log(res)
         // setMembers([...members, res.data]);
-        // setFormValues(initialValues);
+       
       })
       .catch((err) => console.log(err));
   };
