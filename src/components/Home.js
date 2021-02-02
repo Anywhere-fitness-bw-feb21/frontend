@@ -1,17 +1,19 @@
 import react from 'react';
+import {StyledDivHome} from '../styledComponents/StyledDivHome'
+import {Link} from 'react-router-dom'
 
 
-
-
- function LandingPage(){
+ function Home(){
     return(
+        <StyledDivHome>
         <div>
         <h1>Anywhere Fitness</h1>
         <h2>Focus | Desire | Discipline</h2>
 
-        <button>Login</button>
-        <button>Register</button>
+        <Link to="/Login"><button>Login</button></Link>
+        <Link to="/Register"><button >Register</button></Link>
         </div>
+        </StyledDivHome>
     )
 
 
@@ -20,4 +22,4 @@ import react from 'react';
 
 
 
-export default LandingPage;
+export default Home;
