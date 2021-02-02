@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import schema from '../validation/schema'
 import * as yup from 'yup'
+import {StyledForm} from '../styledComponents/StyledForm'
 
 const initialValues = {
   // text inputs
@@ -26,7 +27,7 @@ const initialValueErrors = {
 // const initialMembers = [];
 const initialDisabled = true;
 
-export default function Register() {
+export default function Register(props) {
  // const [members, setMembers] = useState(initialMembers);
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialValueErrors);
@@ -74,6 +75,7 @@ export default function Register() {
       .then((res) => {
           //window.localStorage.setItem("token",)
           console.log(res)
+          props.history.push('/login')
         // setMembers([...members, res.data]);
        
       })
@@ -98,6 +100,8 @@ export default function Register() {
   }, [formValues]);
 
   return (
+    <StyledForm>
+      <h1>Register</h1>
     <form onSubmit={onSubmit}>
     
       <label>
@@ -146,7 +150,7 @@ export default function Register() {
 
       <p> {formErrors.role}</p>
 
-      <label>
+      <label className="radioInput">
         Client
         <input 
         type="radio" 
@@ -154,15 +158,20 @@ export default function Register() {
         value = "client"
         onChange={inputChange} />
       </label>
-      <label>
+      <label className="radioInput">
         Instructor
         <input 
+        
         type="radio" 
         name = "role"
         value="instructor" 
         onChange={inputChange} />
       </label>
-      <button onSubmit={onSubmit} disabled = {disabled}>Submit</button>
+      <br/>
+      <button className='submitBtn' onSubmit={onSubmit} disabled = {disabled}>Submit</button>
     </form>
+    </StyledForm>
   );
 }
+
+

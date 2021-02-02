@@ -21,7 +21,6 @@ const ClientSearch = () => {
   if(event[e.target.name].includes(inputValue)){
           return event
   }
-
       })
       )
     })

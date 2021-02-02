@@ -1,7 +1,9 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {StyledForm2} from '../styledComponents/StyledForm2';
 import { Link, useHistory } from "react-router-dom";
+
 
 
 const initialValues = {
@@ -31,6 +33,7 @@ export default function Login() {
       axios
       .post("https://anytime-fitness.herokuapp.com/api/auth/login",infoValues)
       .then(res=> {
+          console.log(res)
           window.localStorage.setItem('token',res.data.token)
           if(res.data.role === "client"){
             history.push("/client");
@@ -45,6 +48,8 @@ export default function Login() {
   }
 
   return (
+    <StyledForm2>
+    <h1>Login</h1>
     <form onSubmit={submitLogin}>
       <label>
         Username
@@ -66,9 +71,13 @@ export default function Login() {
         />
       </label>
 
-      <button>Login</button>
+      <button className='loginBtn'>Login</button>
       <br/>
-      <Link to = "/register">If you don't have account, please Sign in</Link>
+      <p>If you don't have account</p>
+      <Link className='signUp' to = "/register">Please Sign Up</Link>
     </form>
+    </StyledForm2>
   );
 }
+
+

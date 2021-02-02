@@ -7,8 +7,10 @@ import InstructorDashboard from './components/Instructor';
 import Register from "./components/Register";
 import Login from "./components/Login";
 
+
 function App() {
   return (
+    
     <div className="App">
       {/* rendering the register and login components */}
        <Router >
@@ -19,7 +21,9 @@ function App() {
       <ProtectedRoute path="/client" component={ClientSearch}/>
       </Switch>
       </Router> 
+      
     </div>
+    
   );
 }
 
