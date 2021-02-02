@@ -100,6 +100,7 @@ export default function Register() {
 
   return (
     <StyledForm>
+      <h1>Register</h1>
     <form onSubmit={onSubmit}>
     
       <label>
@@ -176,12 +177,15 @@ export default function Register() {
 const StyledForm = styled.form`
 
 background-color: #BAC7BE;
-height: 30vh;
+height: 40vh;
 display: flex;
+flex-direction: column;
 justify-content: center;
 align-items: center;
-margin: 5rem 10rem;
+margin: 2rem 10rem;
+h1{
 
+}
 label{
   font-size: 1rem;
 }

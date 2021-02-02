@@ -39,6 +39,7 @@ export default function Login() {
 
   return (
     <StyledForm>
+    <h1>Login</h1>
     <form onSubmit={submitLogin}>
       <label>
         Username
@@ -75,12 +76,15 @@ const StyledForm = styled.form`
 background-color: #BAC7BE;
 height: 30vh;
 display: flex;
+flex-direction: column;
 justify-content: center;
 align-items: center;
 margin: 5rem 10rem;
 
 
-
+h1{
+  margin-bottom: 2rem;
+}
 label{
 margin-left: 1rem;
 
