@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import schema from '../validation/schema'
 import * as yup from 'yup'
+import styled from 'styled-components'
 
 const initialValues = {
   // text inputs
@@ -98,6 +99,7 @@ export default function Register() {
   }, [formValues]);
 
   return (
+    <StyledForm>
     <form onSubmit={onSubmit}>
     
       <label>
@@ -146,7 +148,7 @@ export default function Register() {
 
       <p> {formErrors.role}</p>
 
-      <label>
+      <label className="radioInput">
         Client
         <input 
         type="radio" 
@@ -154,15 +156,54 @@ export default function Register() {
         value = "client"
         onChange={inputChange} />
       </label>
-      <label>
+      <label className="radioInput">
         Instructor
         <input 
+        
         type="radio" 
         name = "role"
         value="instructor" 
         onChange={inputChange} />
       </label>
-      <button onSubmit={onSubmit} disabled = {disabled}>Submit</button>
+      <br/>
+      <button className='submitBtn' onSubmit={onSubmit} disabled = {disabled}>Submit</button>
     </form>
+    </StyledForm>
   );
 }
+
+
+const StyledForm = styled.form`
+
+background-color: #BAC7BE;
+height: 30vh;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 5rem 10rem;
+
+label{
+  font-size: 1rem;
+}
+input{
+  background-color: #C2E1C2;
+  margin-left: 1rem;
+  border: none;
+  height: 1rem;
+}
+
+.submitBtn{
+  margin-top: 1rem;
+  margin-left: 5rem;
+  font-size: 1rem;
+}
+
+.radioInput{
+  align-items: center;
+  justify-content: center;
+  margin: 0 1rem;
+}
+
+  
+
+`
