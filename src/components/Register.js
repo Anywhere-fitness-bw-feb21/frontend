@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import schema from '../validation/schema'
 import * as yup from 'yup'
-import styled from 'styled-components'
+import {StyledForm} from '../styledComponents/StyledForm'
 
 const initialValues = {
   // text inputs
@@ -27,7 +27,7 @@ const initialValueErrors = {
 // const initialMembers = [];
 const initialDisabled = true;
 
-export default function Register() {
+export default function Register(props) {
  // const [members, setMembers] = useState(initialMembers);
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialValueErrors);
@@ -75,6 +75,7 @@ export default function Register() {
       .then((res) => {
           //window.localStorage.setItem("token",)
           console.log(res)
+          props.history.push('/login')
         // setMembers([...members, res.data]);
        
       })
@@ -174,40 +175,3 @@ export default function Register() {
 }
 
 
-const StyledForm = styled.form`
-
-background-color: #BAC7BE;
-height: 40vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin: 2rem 10rem;
-h1{
-
-}
-label{
-  font-size: 1rem;
-}
-input{
-  background-color: #C2E1C2;
-  margin-left: 1rem;
-  border: none;
-  height: 1rem;
-}
-
-.submitBtn{
-  margin-top: 1rem;
-  margin-left: 5rem;
-  font-size: 1rem;
-}
-
-.radioInput{
-  align-items: center;
-  justify-content: center;
-  margin: 0 1rem;
-}
-
-  
-
-`
