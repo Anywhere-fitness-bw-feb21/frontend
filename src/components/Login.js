@@ -32,6 +32,7 @@ export default function Login() {
       .post("https://anytime-fitness.herokuapp.com/api/auth/login",infoValues)
       .then(res=> {
           window.localStorage.setItem('token',res.data.token)
+          console.log(res)
           if(res.data.role === "client"){
             history.push("/client");
           }
