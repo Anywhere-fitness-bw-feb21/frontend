@@ -74,7 +74,6 @@ export default function Register(props) {
       )
       .then((res) => {
           //window.localStorage.setItem("token",)
-          console.log(res)
           props.history.push('/login')
         // setMembers([...members, res.data]);
        
