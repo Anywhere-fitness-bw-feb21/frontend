@@ -1,7 +1,10 @@
 import React,{useState} from 'react'
 import axiosWithAuth from '../utils/axiosWithAuth'
+import Dashboard from './Dashboard';
+import {searchClass} from '../actions/index';
+import {connect} from 'react-redux';
 
-const ClientSearch = () => {
+const ClientSearch = (props) => {
 
     const [inputValue, setInputValue] = useState("")
     const [searchResult,setSearchResult] = useState([]);
@@ -11,29 +14,32 @@ const ClientSearch = () => {
     }
 
     const handleSearch = (e) => {
-    e.preventDefault();
-    console.log(e.target.name)
-    axiosWithAuth()
-    .get(`/auth/users/classes`)
-    .then(res => {
-        console.log(res)
-      setSearchResult( res.data.data.filter(event => {
-  if(event[e.target.name].includes(inputValue)){
-          return event
-  }
-      })
-      )
-    })
-    .catch(err => {
-        console.log(err)
-    })
+        e.preventDefault()
+    props.searchClass(e.target.name, inputValue)
+    // console.log(e.target.name)
+
+//     axiosWithAuth()
+//     .get(`/auth/users/classes`)
+//     .then(res => {
+//         console.log(res)
+//       setSearchResult( res.data.data.filter(event => {
+//        if(event[e.target.name].includes(inputValue)){
+//           return event
+//   }
+//       })
+//       )
+//     })
+//     .catch(err => {
+//         console.log(err)
+//     })
     }
 
     console.log(searchResult)
     return(
+        <>
         <form>
             <input 
-            type = "text"
+            type = "search"
             name = "search"
             value = {inputValue}
             onChange = {handleChange}
@@ -46,6 +52,14 @@ const ClientSearch = () => {
            <button name="intensity" onClick = {handleSearch}>Search by intensity level</button>
            <button name="location" onClick = {handleSearch}>Search by class location</button>
         </form>
+        </>
     )
 }
-export default ClientSearch;
+
+// const mapStateToProps = (state) => {
+//     console.log(state) 
+//     return {
+//     classes: state.classes
+//     }
+// }
+export default connect(null,{searchClass})(ClientSearch);
