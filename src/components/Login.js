@@ -35,6 +35,7 @@ export default function Login() {
       .then(res=> {
           console.log(res)
           window.localStorage.setItem('token',res.data.token)
+          console.log(res)
           if(res.data.role === "client"){
             history.push("/client");
           }
