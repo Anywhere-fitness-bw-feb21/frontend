@@ -17,7 +17,7 @@ function EditClass(props){
     },[])
 
     function handleChange(e){
-        if(e.target.name ==="durtaion" || e.target.name === "max_size"){
+        if(e.target.name ==="duration" || e.target.name === "max_size"){
             setForm({
                 ...form,
                 [e.target.name]: parseFloat(e.target.value)

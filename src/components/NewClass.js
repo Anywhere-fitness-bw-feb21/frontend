@@ -16,11 +16,12 @@ const initForm={
     signedUp: false
 }
 
+
 function NewClass(props){
     const [form, setForm] = useState(initForm);
 
     function handleChange(e){
-        if(e.target.name ==="durtaion" || e.target.name === "max_size"){
+        if(e.target.name ==="duration" || e.target.name === "max_size"){
             setForm({
                 ...form,
                 [e.target.name]: parseFloat(e.target.value)
@@ -33,6 +34,7 @@ function NewClass(props){
             })
     }
 
+    console.log(form)
     function submitHandler(e){
         e.preventDefault();
         console.log(form);
@@ -41,6 +43,7 @@ function NewClass(props){
         props.addClass(form)
         props.getClasses()
     }
+
     return(
         <form onSubmit={submitHandler}>
             <input type="text" name="name" placeholder="Class name" onChange={handleChange} value={form.name}/><br/>
