@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import NewClass from './NewClass'
 import EditClass from './EditClass'
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 
 function InstructorDashboard(props){
@@ -25,6 +26,17 @@ function InstructorDashboard(props){
         e.preventDefault();
         props.setEditing(e.target.value);
     }
+    function deleteClass(e){
+        e.preventDefault();
+        axiosWithAuth().delete(`auth/instructor/classes/${e.target.value}`)
+        .then(res=>{
+            console.log(res)
+        })
+        .catch(drama=>{
+            console.log(drama)
+        })
+        props.getClasses();
+    }
 
     return(
     <StyledDash>
@@ -43,7 +55,8 @@ function InstructorDashboard(props){
                             <p>{inclass.duration} hrs</p>
                             <p>{inclass.location}</p>
                             <p>{inclass.max_size}</p>
-                            <button value={inclass.id} onClick={toggleEdit}>Edit</button>
+                            <button value={inclass.id} onClick={toggleEdit}>Edit</button><br/>
+                            <button value={inclass.id} onClick={deleteClass}>Delete Class</button>
                         </div>
                         )
                     }
