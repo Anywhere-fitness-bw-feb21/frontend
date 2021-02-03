@@ -42,3 +42,21 @@ export const setEditing = (data) =>dispatch =>{
 export const cancelEdit = () =>dispatch=>{
     dispatch({type: "CANCEL_EDIT"})
 }
+
+export const searchClass  = (input,inputValue) => dispatch => {
+    dispatch({ type: "API_START"})
+
+    axiosWithAuth()
+    .get(`/auth/users/classes`)
+    .then(res => {
+     
+        dispatch({type: "SEARCH", 
+        payload: res.data.data.filter(inclass => {
+            return inclass[input].includes(inputValue)
+        })}) 
+        
+    })
+    .catch(err => {
+        dispatch({ type: "API_BAD"})
+    })
+}
