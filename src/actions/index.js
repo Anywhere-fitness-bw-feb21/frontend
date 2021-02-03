@@ -18,7 +18,6 @@ export const getClasses = () =>dispatch =>{
     axiosWithAuth().get("https://anytime-fitness.herokuapp.com/api/auth/users/classes")
     .then(res=>{
         dispatch({ type: "API_GOOD"})
-        console.log(res.data)
         dispatch({ type: "SET_CLASSES", payload: res.data.data})
     })
     .catch(drama=>{

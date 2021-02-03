@@ -1,30 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getClasses } from '../actions/index'
+import { getClasses } from '../actions/index';
+import styled from 'styled-components';
 
 import NewClass from './NewClass'
 
 function InstructorDashboard(props){
     const [hidden, setHidden] = useState(true);
 
+    useEffect(()=>{
+        props.getClasses()
+    }, [])
+
     function toggleHidden(e){
         e.preventDefault();
         setHidden(!hidden);
     }
 
-    function getClasses(e){
-        e.preventDefault();
-        props.getClasses()
-    }
-
-    console.log(props.classes)
-
     return(
-    <div>
-        <div className="classes">
-            <button onClick={getClasses}>Get Classes</button>
+    <StyledDash>
+            
             {/* these next lines return an error if there's an error in state, or maps through the class array */}
             {props.error ? <p classname="error">{props.error}</p> : <div>
+            <p>Available classes</p>
+            <div  className="classes">
                 {props.classes.map(inclass=>{//Its called inclass because "class" is a JS keyword, so instructors class -> inclass
                         return(
                         <div className="class" key={inclass.id}>
@@ -32,20 +31,18 @@ function InstructorDashboard(props){
                             <h6>{inclass.instructor_name}</h6>
                             <p>{inclass.date}</p>
                             <p>{inclass.type} | {inclass.intensity}</p>
-                            <p>{inclass.duration}</p>
+                            <p>{inclass.duration} hrs</p>
                             <p>{inclass.location}</p>
                             <p>{inclass.max_size}</p>
                         </div>
                         )
                     }
                 )}
+                </div>
             </div>}
             {/* end of classList conditional, next line is a coniditional to add a new class */}
-            {hidden ? <button onClick={toggleHidden}>Add Class</button> : <NewClass hide={setHidden}/>}
-            
-        </div>
-
-    </div>
+            {hidden ? <button onClick={toggleHidden}>Add Class</button> : <NewClass hide={setHidden} getClasses={props.getClasses}/>}
+    </StyledDash>
     )
 }
 
@@ -56,3 +53,18 @@ const mapStateToProps = state =>{
     }
 }
 export default connect(mapStateToProps, { getClasses })(InstructorDashboard)
+
+const StyledDash = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    .classes{
+        width: 100%;
+        display: flex;
+        flex-direction: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+`
