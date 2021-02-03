@@ -4,7 +4,6 @@ export const addClass = (sesh)=> dispatch => {
     dispatch({ type: "API_START"})
     axiosWithAuth().post("https://anytime-fitness.herokuapp.com/api/auth/instructor/classes", sesh)
         .then(res=>{
-            console.log(res)
             dispatch({type: "API_GOOD"})
         })
         .catch(res=>{
@@ -23,4 +22,23 @@ export const getClasses = () =>dispatch =>{
     .catch(drama=>{
         dispatch({ type: "API_BAD"})
     })
+}
+
+export const editClass = (data) => dispatch =>{
+    dispatch({ type: "API_START"})
+    axiosWithAuth().put(`https://anytime-fitness.herokuapp.com/api/auth/instructor/classes/${data.id}`, data)
+    .then(res=>{
+        dispatch({ type: "API_GOOD"})
+        dispatch({ type: "CANCEL_EDIT"})
+    })
+    .catch(drama=>{
+        console.log(drama)
+    })
+}
+
+export const setEditing = (data) =>dispatch =>{
+    dispatch({type: "SET_EDITTING", payload: data})
+}
+export const cancelEdit = () =>dispatch=>{
+    dispatch({type: "CANCEL_EDIT"})
 }

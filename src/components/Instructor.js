@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getClasses } from '../actions/index';
+import { getClasses, setEditing } from '../actions/index';
 import styled from 'styled-components';
 
 import NewClass from './NewClass'
+import EditClass from './EditClass'
+
 
 function InstructorDashboard(props){
     const [hidden, setHidden] = useState(true);
+    const history = useHistory()
 
     useEffect(()=>{
         props.getClasses()
@@ -15,6 +19,11 @@ function InstructorDashboard(props){
     function toggleHidden(e){
         e.preventDefault();
         setHidden(!hidden);
+    }
+    function toggleEdit(e){
+        console.log(e)
+        e.preventDefault();
+        props.setEditing(e.target.value);
     }
 
     return(
@@ -34,11 +43,14 @@ function InstructorDashboard(props){
                             <p>{inclass.duration} hrs</p>
                             <p>{inclass.location}</p>
                             <p>{inclass.max_size}</p>
+                            <button value={inclass.id} onClick={toggleEdit}>Edit</button>
                         </div>
                         )
                     }
                 )}
+                {props.editing ? <EditClass/> : <></>}
                 </div>
+                
             </div>}
             {/* end of classList conditional, next line is a coniditional to add a new class */}
             {hidden ? <button onClick={toggleHidden}>Add Class</button> : <NewClass hide={setHidden} getClasses={props.getClasses}/>}
@@ -49,10 +61,11 @@ function InstructorDashboard(props){
 const mapStateToProps = state =>{
     return{
         classes: state.classes,
-        error: state.error
+        error: state.error,
+        editing: state.editing
     }
 }
-export default connect(mapStateToProps, { getClasses })(InstructorDashboard)
+export default connect(mapStateToProps, { getClasses, setEditing })(InstructorDashboard)
 
 const StyledDash = styled.div`
     display: flex;
