@@ -49,7 +49,7 @@ function EditClass(props){
         <input type="text" name="duration" placeholder="Approx. class duration" onChange={handleChange} value={form.duration}/><br/><br/>
         <button>submit</button>
     </form><br/>
-    <button onclick={handleCancel}>Cancel</button>
+    <button onClick={handleCancel}>Cancel</button>
     </div>)
 }
 const mapStateToProps = state =>{
