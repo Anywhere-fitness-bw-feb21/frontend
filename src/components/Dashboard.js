@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getClasses, setEditing } from '../actions/index';
 import ClientSearch from './ClientSearch';
 import SingleClass from './SingleClass';
-
+import {StyledDashboard} from '../styledComponents/StyledDashboard'
 
 function Dashboard(props){
    
@@ -13,24 +13,26 @@ function Dashboard(props){
 
  
     return(
-    <div>
+    <StyledDashboard>
         <ClientSearch />
-            <p>Available classes</p>
+            <h3>Available classes</h3>
+            {props.isFetching ? <h3>Data is loading... Please wait.</h3> :
             <div  className="classes">
                 {props.classes.map(inclass=>{//Its called inclass because "class" is a JS keyword, so instructors class -> inclass
                         return(<SingleClass key= {inclass.id} inclass = {inclass}/> )
-                    }
-                )} 
-            </div>
-    </div>
+                    })
+                 } 
+            </div>}
+    </StyledDashboard>
     )
 }
 
 const mapStateToProps = state =>{
+    console.log(state.classes)
     return{
         classes: state.classes,
         error: state.error,
-        editing: state.editing
+        isFetching: state.isFetching
     }
 }
 export default connect(mapStateToProps, { getClasses, setEditing })(Dashboard)

@@ -46,13 +46,9 @@ const reducer = (state = initialState,action) => {
             ...state,
             isFetching: false,
             classes: action.payload
-                //         if(event[e.target.name].includes(inputValue)){
-                //            return event
-                //    }
-                //        })
+              
         }
-    //   setSearchResult( res.data.data
-    //        )
+   
         default: return state
     }
 }

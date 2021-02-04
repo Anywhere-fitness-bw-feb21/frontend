@@ -4,7 +4,7 @@ export const addClass = (sesh)=> dispatch => {
     dispatch({ type: "API_START"})
     axiosWithAuth().post("https://anytime-fitness.herokuapp.com/api/auth/instructor/classes", sesh)
         .then(res=>{
-            dispatch({type: "API_GOOD"})
+            // dispatch({type: "API_GOOD"})
         })
         .catch(res=>{
             console.log(res)
@@ -60,3 +60,15 @@ export const searchClass  = (input,inputValue) => dispatch => {
         dispatch({ type: "API_BAD"})
     })
 }
+// export const joinClass = (data) => dispatch =>{
+//     dispatch({ type: "API_START"})
+//     axiosWithAuth().put(`auth/users/classes/${data.id}`, data)
+//     .then(res=>{
+//         console.log(res)
+//         // dispatch({ type: "API_GOOD"})
+//         // dispatch({ type: "CANCEL_EDIT"})
+//     })
+//     .catch(drama=>{
+//         console.log(drama.response)
+//     })
+// }
