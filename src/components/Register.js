@@ -24,11 +24,10 @@ const initialValueErrors = {
   role: ""
 };
 
-// const initialMembers = [];
+
 const initialDisabled = true;
 
 export default function Register(props) {
- // const [members, setMembers] = useState(initialMembers);
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialValueErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
@@ -64,19 +63,15 @@ export default function Register(props) {
 
   };
 
-  //console.log(formValues)
   const postMember = (newMemeber) => {
-      console.log(newMemeber);
+
     axios
       .post(
         "https://anytime-fitness.herokuapp.com/api/auth/register",
         newMemeber
       )
       .then((res) => {
-          //window.localStorage.setItem("token",)
-          props.history.push('/login')
-        // setMembers([...members, res.data]);
-       
+          props.history.push('/login') 
       })
       .catch((err) => console.log(err));
   };

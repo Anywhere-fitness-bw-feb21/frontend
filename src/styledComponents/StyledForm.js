@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const StyledForm = styled.div`
 
 background-color: #BAC7BE;
-height: 40vh;
+/* height: 40vh; */
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -17,6 +17,10 @@ h1{
 label{
   font-size: 1rem;
 }
+p{
+  color: red;
+}
+
 input{
   background-color: #C2E1C2;
   margin-left: 1rem;
