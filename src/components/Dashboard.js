@@ -28,7 +28,7 @@ function Dashboard(props){
 }
 
 const mapStateToProps = state =>{
-    console.log(state.classes)
+   
     return{
         classes: state.classes,
         error: state.error,
