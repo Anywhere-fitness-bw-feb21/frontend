@@ -1,6 +1,4 @@
 import React,{useState} from 'react'
-import axiosWithAuth from '../utils/axiosWithAuth'
-import Dashboard from './Dashboard';
 import {searchClass} from '../actions/index';
 import {connect} from 'react-redux';
 
