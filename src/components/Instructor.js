@@ -10,7 +10,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 
 function InstructorDashboard(props) {
   const [hidden, setHidden] = useState(true);
-  const history = useHistory();
+
 
   useEffect(() => {
     props.getClasses();
