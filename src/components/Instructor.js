@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { getClasses, setEditing } from "../actions/index";
 import styled from "styled-components";
