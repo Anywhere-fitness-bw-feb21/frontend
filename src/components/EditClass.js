@@ -12,6 +12,7 @@ function EditClass(props){
             if(item.id === parseInt(props.edit)){
                 return item
             }
+            return ""
         })
         setForm(edit)
     },[])
