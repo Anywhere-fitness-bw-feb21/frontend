@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import {StyledDivHome} from '../styledComponents/StyledDivHome'
 import {Link} from 'react-router-dom'
 
