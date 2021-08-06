@@ -10,9 +10,9 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 function InstructorDashboard(props) {
   const [hidden, setHidden] = useState(true);
 
-
   useEffect(() => {
     props.getClasses();
+     // eslint-disable-next-line
   }, []);
 
   function toggleHidden(e) {
