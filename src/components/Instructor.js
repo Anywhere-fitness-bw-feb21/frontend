@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { getClasses, setEditing } from "../actions/index";
 import styled from "styled-components";
@@ -10,10 +9,10 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 
 function InstructorDashboard(props) {
   const [hidden, setHidden] = useState(true);
-  const history = useHistory();
 
   useEffect(() => {
     props.getClasses();
+     // eslint-disable-next-line
   }, []);
 
   function toggleHidden(e) {

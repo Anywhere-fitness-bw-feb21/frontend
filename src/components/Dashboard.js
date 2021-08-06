@@ -6,9 +6,10 @@ import SingleClass from './SingleClass';
 import {StyledDashboard} from '../styledComponents/StyledDashboard'
 
 function Dashboard(props){
-   
+  
     useEffect(()=>{
         props.getClasses()
+         // eslint-disable-next-line
     }, [])
 
  

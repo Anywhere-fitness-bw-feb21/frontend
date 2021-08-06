@@ -8,12 +8,14 @@ import "react-datepicker/dist/react-datepicker.css";
 function EditClass(props){
     const [form, setForm] = useState({})
     useEffect(()=>{
-        let edit = props.classes.find(item=>{
+        let edit = props.classes.find(item => {
             if(item.id === parseInt(props.edit)){
                 return item
             }
+            return ""
         })
         setForm(edit)
+         // eslint-disable-next-line
     },[])
 
     function handleChange(e){

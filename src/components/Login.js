@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import {StyledForm2} from '../styledComponents/StyledForm2';
 import { Link, useHistory } from "react-router-dom";
 
